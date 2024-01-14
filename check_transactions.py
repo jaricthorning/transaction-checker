@@ -26,7 +26,7 @@ def color_print(color, string):
     print(color + str(string) + bcolors.ENDC)
 
 
-class receipt:
+class Receipt:
     def __init__(self, date, name, description, amount, status, path, filename):
         self.name = name
 
@@ -60,7 +60,7 @@ class receipt:
         return f"{self.filename}"
 
 
-class transaction:
+class Transaction:
     def __init__(
         self, account, date, narrative, debit, credit, balance, categories, serial
     ):
@@ -94,7 +94,7 @@ def readTransactions(fileName):
 
     transactions = []
     for line in lines[1:]:
-        newTransaction = transaction(*line)
+        newTransaction = Transaction(*line)
         transactions.append(newTransaction)
 
     return transactions
@@ -110,7 +110,7 @@ def readReceipts(directory):
             items = filename.split("-")
             if len(items) == 5 or len(items) == 6:
                 receipts.append(
-                    receipt(
+                    Receipt(
                         items[0],
                         items[1],
                         items[2],
